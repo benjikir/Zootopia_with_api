@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animals</title>
+    <style>
+        @gray-darker:               #444444;
+        @gray-dark:                 #696969;
+        @gray:                      #999999;
+        @gray-light:                #cccccc;
+        @gray-lighter:              #ececec;
+        @gray-lightest:             lighten(@gray-lighter,4%);
+
+
+        html {
+          background-color: #ffe9e9;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40pt;
+            font-weight: normal;
+        }
+
+        body {
+          font-family: 'Roboto','Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          letter-spacing: 0;
+          padding: 1rem;
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          -moz-font-feature-settings: "liga" on;
+          width: 900px;
+          margin: auto;
+        }
+
+        .cards {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex; /* Add flexbox for horizontal layout */
+          flex-wrap: wrap; /* Allow cards to wrap to the next line */
+        }
+
+        .cards__item {
+          background-color: white;
+          border-radius: 0.25rem;
+          box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+          overflow: hidden;
+          padding: 1rem;
+          margin: 1rem; /* Reduced margin for better spacing */
+          width: calc(33.333% - 2rem); /* Adjust width for 3 cards per row */
+          box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
+        .card__title {
+          color: @gray-dark;
+          font-size: 1.25rem;
+          font-weight: 300;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        .card__text {
+          flex: 1 1 auto;
+          font-size: 0.95rem;
+          line-height: 2;
+          margin-bottom: 0.25rem; /* Reduced margin for better spacing */
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Animal Information</h1>
+        __REPLACE_ANIMALS_INFO__
+    </body>
+</html>

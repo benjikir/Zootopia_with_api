@@ -1,31 +1,8 @@
-import requests
+import data_fetcher
+
 from flask import Flask, request, render_template_string
 
 app = Flask(__name__)
-
-API_KEY = "LtiejdZWqyD+VxmJKplAyw==ifbJDVJSMeno6KgZ"  # Replace with your actual API key
-
-
-def fetch_animal_data_from_api(animal_name, api_key):
-    """
-    Fetches animal data from the API Ninja Animals API.
-
-    Args:
-        animal_name (str): The name of the animal to search for.
-        api_key (str): The API key for API Ninja.
-
-    Returns:
-        list: A list of animal dictionaries, or an empty list if there was an error.
-    """
-    api_url = f"https://api.api-ninjas.com/v1/animals?name={animal_name}"
-    headers = {'X-Api-Key': api_key}
-    try:
-        response = requests.get(api_url, headers=headers)
-        response.raise_for_status()  # Raise an exception for bad status codes
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching data from API: {e}")
-        return []
 
 
 def serialize_animal(animal_obj):
@@ -61,7 +38,7 @@ def index():
         animal_name = request.form.get('animal_name', '').strip()
 
         if animal_name:
-            animals_data = fetch_animal_data_from_api(animal_name, API_KEY)
+            animals_data = data_fetcher.fetch_data(animal_name) # Call data_fetcher
 
             if animals_data:
                 structured_data = []

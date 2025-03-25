@@ -1,6 +1,12 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-API_KEY = "LtiejdZWqyD+VxmJKplAyw==ifbJDVJSMeno6KgZ"  # Replace with your actual API key
+# Load environment variables from ..env file
+load_dotenv()
+
+# Access the API key from the environment variables
+API_KEY = os.getenv('API_KEY')
 
 def fetch_data(animal_name):
     """
@@ -25,6 +31,11 @@ def fetch_data(animal_name):
                 }
               }
     """
+
+    if not API_KEY:
+        print("Error: API_KEY not found in environment variables.  Please set the API_KEY environment variable.")
+        return []  # Return an empty list if the API key is missing
+
     api_url = f"https://api.api-ninjas.com/v1/animals?name={animal_name}"
     headers = {'X-Api-Key': API_KEY}
     try:
@@ -33,7 +44,7 @@ def fetch_data(animal_name):
         return response.json()  # Returns the API response (list of dictionaries)
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from API: {e}")
-        return [] # Returns empty list if error
+        return []  # Returns empty list if error
 
 if __name__ == '__main__':
     # Example usage (optional - you can remove this)
